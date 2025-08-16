@@ -33,3 +33,23 @@ for t in range(500):
         # Update weights using gradient descent
         w1 -= learning_rate * grad_w1
         w2 -= learning_rate * grad_w2
+
+# ------------------------
+# Demo: Python lists vs NumPy arrays
+import numpy as np
+
+print("Python list operations:")
+a = [1,2,3]
+b = [4,5,6]
+print("a+b:", a + b)
+try:
+    print(a * b)
+except TypeError:
+    print("a*b has no meaning for Python lists")
+
+print()
+print("Numpy array operations:")
+a = np.array([1,2,3])
+b = np.array([4,5,6])
+print("a+b:", a + b)
+print("a*b:", a * b)

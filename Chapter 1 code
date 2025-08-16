@@ -69,3 +69,8 @@ print("a.sum(axis=0):", a.sum(axis=0))   # [5 7 9]
 # Sum along rows (axis=1)
 print("a.sum(axis=1):", a.sum(axis=1))   # [ 6 15]
 
+a = np.array([[1,2,3],
+                  [4,5,6]])
+b = np.array([10,20,30]) print("a+b:\n", a+b)
+
+

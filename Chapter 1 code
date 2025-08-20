@@ -167,5 +167,21 @@ x = np.array([1, 2, 3])
 print("Input:", x)
 print("Output:", chain_length_2(chain, x))
 
+from typing import Callable
+import numpy as np
+
+# A Function takes in an ndarray as an argument and produces an ndarray
+Array_Function = Callable[[np.ndarray], np.ndarray]
+
+def multiple_inputs_add(x: np.ndarray, y: np.ndarray,
+                        sigma: Array_Function) -> np.ndarray:
+    '''
+    Function with multiple inputs and addition, forward pass.
+    '''
+    assert x.shape == y.shape, "x and y must have the same shape"
+    a = x + y
+    return sigma(a)
+
+
 
 

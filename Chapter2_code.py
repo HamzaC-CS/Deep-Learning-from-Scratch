@@ -84,5 +84,17 @@ def loss_gradients(forward_info: Dict[str, ndarray],
 
     return loss_gradients
 
+forward_info, loss = forward_loss(X_batch, y_batch, weights)
+    loss_grads = loss_gradients(forward_info, weights)
+for key in weights.keys(): # 'weights' and 'loss_grads' have the same keys weights[key] -= learning_rate * loss_grads[key]
+
+# Code below runs the train function for certain number of cycles through the entire training set
+train_info = train(X_train, y_train,
+                       learning_rate = 0.001,
+                       batch_size=23,
+                       return_weights=True,
+                       seed=80718)
+
+
 
 

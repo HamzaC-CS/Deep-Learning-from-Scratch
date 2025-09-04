@@ -95,6 +95,21 @@ train_info = train(X_train, y_train,
                        return_weights=True,
                        seed=80718)
 
+def predict(X: ndarray,
+            weights: Dict[str, ndarray]):
+    '''
+    Generate predictions from the step-by-step linear regression model.
+    '''
+
+    N = np.dot(X, weights['W'])
+
+    return N + weights['B']
+
+    preds = predict(X_test, weights) # weights = train_info[0]
+
+
+
+
 
 
 

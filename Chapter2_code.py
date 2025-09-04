@@ -107,6 +107,18 @@ def predict(X: ndarray,
 
     preds = predict(X_test, weights) # weights = train_info[0]
 
+def mae(preds: ndarray, actuals: ndarray): '''
+Compute mean absolute error.
+'''
+return np.mean(np.abs(preds - actuals))
+
+def rmse(preds: ndarray, actuals: ndarray): '''
+Compute root mean squared error.
+'''
+return np.sqrt(np.mean(np.power(preds - actuals, 2)))
+
+
+
 
 
 

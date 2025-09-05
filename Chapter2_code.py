@@ -144,6 +144,21 @@ forward_info, loss = forward_loss(X_batch, y_batch, weights)
 for key in weights.keys():
 weights[key] -= learning_rate * loss_grads[key]
 
+preds = predict(X_test, weights)
+
+def predict(X: ndarray,
+weights: Dict[str, ndarray]) -> ndarray:
+'''
+Generate predictions from the step-by-step neural network model. '''
+M1 = np.dot(X, weights['W1'])
+        N1 = M1 + weights['B1']
+        O1 = sigmoid(N1)
+        M2 = np.dot(O1, weights['W2'])
+        P = M2 + weights['B2']
+return P
+
+
+
 
 
 

@@ -139,6 +139,12 @@ M1 = np.dot(X, weights['W1'])
         forward_info['y'] = y
 return forward_info, loss
 
+forward_info, loss = forward_loss(X_batch, y_batch, weights)
+    loss_grads = loss_gradients(forward_info, weights)
+for key in weights.keys():
+weights[key] -= learning_rate * loss_grads[key]
+
+
 
 
 

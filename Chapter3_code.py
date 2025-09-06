@@ -96,5 +96,52 @@ return np.dot(output_grad, np.transpose(self.param, (1, 0)))
 def _param_grad(self, output_grad: ndarray) -> ndarray: '''
 Compute parameter gradient.
 '''
-return np.dot(np.transpose(self.input_, (1, 0)), output_grad)v
+return np.dot(np.transpose(self.input_, (1, 0)), output_grad)
+
+class BiasAdd(ParamOperation): '''
+        Compute bias addition.
+        '''
+def __init__(self,
+B: ndarray):
+'''
+Initialize Operation with self.param = B. Check appropriate shape.
+'''
+assert B.shape[0] == 1
+super().__init__(B)
+def _output(self) -> ndarray: '''
+Compute output.
+'''
+return self.input_ + self.param
+def _input_grad(self, output_grad: ndarray) -> ndarray: '''
+Compute input gradient.
+'''
+return np.ones_like(self.input_) * output_grad
+def _param_grad(self, output_grad: ndarray) -> ndarray: '''
+Compute parameter gradient.
+'''
+param_grad = np.ones_like(self.param) * output_grad
+return np.sum(param_grad, axis=0).reshape(1, param_grad.shape[1])
+
+class Sigmoid(Operation):
+    '''
+    Sigmoid activation function.
+    '''
+
+    def __init__(self) -> None:
+        '''Pass'''
+        super().__init__()
+
+    def _output(self) -> ndarray:
+        '''
+        Compute output.
+        '''
+        return 1.0/(1.0+np.exp(-1.0 * self.input_))
+
+    def _input_grad(self, output_grad: ndarray) -> ndarray:
+        '''
+        Compute input gradient.
+        '''
+        sigmoid_backward = self.output * (1.0 - self.output)
+        input_grad = sigmoid_backward * output_grad
+        return input_grad
 

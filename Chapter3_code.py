@@ -394,5 +394,20 @@ class NeuralNetwork(object):
         for layer in self.layers:
             yield from layer.param_grads    
 
+linear_regression = NeuralNetwork(
+        layers=[Dense(neurons = 1)],
+                loss = MeanSquaredError(),
+                learning_rate = 0.01
+                )
+    neural_network = NeuralNetwork(
+        layers=[Dense(neurons=13,
+                      activation=Sigmoid()),
+                Dense(neurons=1,
+                      activation=Linear())],
+                loss = MeanSquaredError(),
+                learning_rate = 0.01
+                )
+
+
 
 
